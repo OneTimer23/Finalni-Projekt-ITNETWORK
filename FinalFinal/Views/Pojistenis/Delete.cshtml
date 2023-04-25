@@ -1,0 +1,57 @@
+﻿@model FinalFinal.Models.Pojisteni
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3>Opravdu chcete smazat pojištění?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Typ pojistky
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TypPojistky)
+        </dd>
+        <dt class = "col-sm-2">
+            Pojištěný předmět
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PojistenyPredmet)
+        </dd>
+        <dt class = "col-sm-2">
+            Hodnota
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hodnota)
+        </dd>
+        <dt class = "col-sm-2">
+           Platnost od
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlatnostOd)
+        </dd>
+        <dt class = "col-sm-2">
+            Platnost do
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlatnostDo)
+        </dd>
+        <dt class = "col-sm-2">
+            Uživatel
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Uzivatel.Id)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" value="Delete" class="btn delete">Ano</button> |
+        <a asp-action="Index" class="btn accept">Ne</a>
+    </form>
+</div>

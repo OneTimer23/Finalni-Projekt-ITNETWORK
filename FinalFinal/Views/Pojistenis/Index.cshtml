@@ -1,0 +1,100 @@
+﻿@model IEnumerable<FinalFinal.Models.Pojisteni>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<h1>Seznam všech sjednaných pojistek</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Typ pojistky
+            </th>
+            <th>
+                Pojištěný předmět
+            </th>
+            <th>
+                Hodnota
+            </th>
+            <th>
+                Platnost Od
+            </th>
+            <th>
+                Platnost Do
+            </th>
+            <th>
+                Pojištěnec
+            </th>
+            <th>
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (User.IsInRole("admin"))
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.TypPojistky)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PojistenyPredmet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hodnota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlatnostOd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlatnostDo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uzivatel.PrijmeniPlusJmeno)
+                </td>
+                
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn edit">Upravit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn delete">Smazat</a>
+                    </td>
+                </tr>
+             
+            }
+          }else
+        {
+            @foreach (var item in Model.Where(p => p.ZakladatelId == ViewBag.userid))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypPojistky)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PojistenyPredmet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hodnota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlatnostOd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlatnostDo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Uzivatel.PrijmeniPlusJmeno)
+                    </td>
+                </tr>
+        }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+﻿@model FinalFinal.Models.Pojisteni
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Upravit pojištění</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="ZakladatelId"/>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group p-2 m-1">
+                <label asp-for="TypPojistky" class="control-label">Typ pojistky</label>
+                <select asp-for="TypPojistky" class="form-select">
+                    <option>Pojištění majetku</option>
+                    <option>Havarijní pojištění</option>
+                    <option>Povinné ručení</option>
+                    <option>Cestovní pojištění</option>
+                    <option>Životní pojistění</option>
+                    <option>Pojištění odpovědnosti za škodu</option>
+                </select>
+            </div>
+            <div class="form-group p-2 m-1">
+                <label asp-for="PojistenyPredmet" class="control-label">Pojištěný předmět</label>
+                <input asp-for="PojistenyPredmet" class="form-control" />
+                <span asp-validation-for="PojistenyPredmet" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2 m-1">
+                <label asp-for="Hodnota" class="control-label">Hodnota předmětu</label>
+                <input asp-for="Hodnota" class="form-control" />
+                <span asp-validation-for="Hodnota" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2 m-1">
+                <label asp-for="PlatnostOd" class="control-label">Platnost od</label>
+                <input asp-for="PlatnostOd" class="form-control" />
+                <span asp-validation-for="PlatnostOd" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2 m-1">
+                <label asp-for="PlatnostDo" class="control-label">Platnost do</label>
+                <input asp-for="PlatnostDo" class="form-control" />
+                <span asp-validation-for="PlatnostDo" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2 m-1">
+                <button type="submit" value="Save" class="btn accept">Uložit</button> |
+
+                <a asp-action="Details" asp-controller="Kontaks">Zpět</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

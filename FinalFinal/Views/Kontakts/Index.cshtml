@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FinalFinal.Models.Kontakt>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Seznam pojištěnců</h1>
+
+
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Jméno
+                    </th>
+                    <th scope="col">
+                        Bydliště
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+    <tbody>
+                @foreach (var item in Model)
+                {
+            <tr>
+                
+                            <td >
+                           
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                       
+                                @Html.DisplayFor(modelItem => item.Jmeno)
+                                @Html.DisplayFor(modelItem => item.Prijmeni)
+                        
+                            </a>
+                            
+                        </td>
+                        <td>
+                    @Html.DisplayFor(modelItem => item.Ulice), @Html.DisplayFor(modelItem => item.Mesto)
+                        </td>
+
+               
+                          
+                        
+                        <td>
+                            @if (User.IsInRole("admin"))
+                            {
+                            <p>
+                            <a asp-action="Edit"  asp-route-id="@item.Id" class="btn edit">Upravit</a> |
+                            <a asp-action="Delete"  asp-route-id="@item.Id" class="btn delete">Smazat</a>
+                            </p>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        
+    <a asp-action="Create" class="btn basic">Přidat pojištěnce</a>
+                            

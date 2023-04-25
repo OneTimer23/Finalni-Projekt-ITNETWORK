@@ -1,0 +1,23 @@
+﻿@model FinalFinal.Models.RegisterViewModel
+<div class="col-4">
+    <h1>Registrovat se</h1>
+    <form class="d-flex flex-column gap-2" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Username">Uživatelské jméno</label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Heslo</label>
+            <input asp-for="Password" type="password"  class="form-control" />
+            <span asp-validation-for="Password"  class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword">Potvrzení hesla</label>
+            <input asp-for="ConfirmPassword" type="password" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn basic p-2 m-1">Registrovat</button>
+    </form>
+</div>

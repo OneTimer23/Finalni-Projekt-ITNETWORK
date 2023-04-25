@@ -1,0 +1,49 @@
+﻿@model FinalFinal.Models.Pojisteni
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Pojisteni</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TypPojistky)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TypPojistky)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PojistenyPredmet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PojistenyPredmet)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hodnota)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hodnota)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PlatnostOd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlatnostOd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PlatnostDo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlatnostDo)
+        </dd>
+        
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

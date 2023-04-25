@@ -1,0 +1,108 @@
+﻿@model FinalFinal.Models.KontaktDetail
+@using FinalFinal.Models;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div>
+    <div class="row">
+          <div class="col-sm-4" style="max-width: 200px;">
+            <img src="/images/profile.png" alt="" class="img-thumbnail" />
+          </div>
+          <div class="col-8">
+            <h1>@Html.DisplayFor(model => model.Record.Jmeno) @Html.DisplayFor(model => model.Record.Prijmeni)</h1>
+            <hr>
+            <div class="row">
+                <div class="col-4">
+                    <div></div>
+                    <div>@Html.DisplayFor(model => model.Record.Ulice)</div>
+                    <div>@Html.DisplayFor(model => model.Record.Mesto)</div>
+                    <div>@Html.DisplayFor(model => model.Record.SmerovaciCislo)</div>
+                </div>
+                <div class="col-4">
+                    <div>@Html.DisplayFor(model => model.Record.Email)</div>
+                    <div>@Html.DisplayFor(model => model.Record.TelCislo)</div>
+                </div>
+
+            </div>
+    @if (User.IsInRole("admin"))
+                            {
+                <div class="mt-4 mb-1 mr-1 ml-1">
+
+                                <p>
+                        <a asp-action="Edit" class="btn edit" asp-route-id="@Model?.Record.Id">Upravit </a>
+                       |
+            <a asp-action="Index">Zpět</a>
+        </p>
+                </div>
+    }
+    else
+    {
+       <a asp-action="Index">Zpět</a> 
+    }
+        </div>
+    </div>
+
+    <h2 class="mt-5">Sjednaná pojištění</h2>
+    
+    
+    <a asp-action="Create" asp-controller="Pojistenis" asp-route-UserId="@Model?.Record.Id" class="btn basic">Vytvořit nové pojištění</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Typ pojistky
+                </th>
+                <th>
+                    Pojištěný předmět
+                </th>
+                <th>
+                    Hodnota
+                </th>
+                <th>
+                    Platnost Od
+                </th>
+                <th>
+                    Platnost Do
+                </th>
+                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.VypisPojisteni)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypPojistky)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PojistenyPredmet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hodnota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlatnostOd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlatnostDo)
+                    </td>
+                    
+                    @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <a asp-controller="Pojistenis"  asp-action="Edit" asp-route-id="@item.Id" class="btn edit">Upravit</a> |
+                        <a asp-controller="Pojistenis"  asp-action="Delete" asp-route-id="@item.Id" class="btn delete">Smazat</a>
+                    </td>
+                }
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+</div>
+

@@ -1,0 +1,184 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> _sm
+@inject UserManager<IdentityUser> _um
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Final</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+
+                body {
+                    font-family: 'Raleway', sans-serif;
+                    background-color: #EEEEEE;
+                }
+
+                nav {
+                    background-color: #222831;
+                }
+
+                .navbar-brand {
+                    color: #00ADB5;
+                    padding: 0 0.7em;
+                }
+
+                .navbar-toggler {
+                    background-color: #00ADB5;
+                    border-color: black;
+                }
+
+                .navbar {
+                    padding: 0;
+                }
+
+                .navbar .navbar-nav .nav-link {
+                    padding: 1em 0;
+                }
+
+                .navbar .navbar-nav .nav-item {
+                    margin: 0 1em;
+                }
+
+                .navbar .navbar-nav .nav-link {
+                    color: #000000;
+                    font-size: 1.1em;
+                }
+
+                .navbar .navbar-nav .nav-link:hover {
+                    color: #000000;
+                }
+
+                .navbar .navbar-nav .nav-item {
+                    position: relative;
+                }
+
+                .navbar .navbar-nav .nav-item::after {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    background-color: #00ADB5;
+                    width: 0%;
+                    content: "";
+                    height: 4px;
+                    transition: all 0.5s;
+                }
+
+                .navbar .navbar-nav .nav-item:hover::after {
+                    width: 100%;
+                }
+                .btn{
+                    background-color: #00ADB5;
+                    color:white;
+                    font-size: 16px;
+                }
+
+                .basic:hover{
+                    background: #222831;
+                    color:white;
+                }
+                .delete{
+                    background: #D11A2A;
+                }
+                .delete:hover{
+                    background:#7a0f18;
+                    color:white;
+                }
+                .edit{
+                    background: #e4d00a;
+                }
+                .edit:hover{
+                    background: #ccba09;
+                    color: white;
+                }
+                .accept{
+                    background: #4cbb17;
+                }
+                .accept:hover{
+                background: #43a414;
+                color:white;
+                }
+                
+
+
+    </style>
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">InsuroServ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex">
+                <ul class="navbar-nav flex-grow-1 ">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Kontakts"
+                           asp-action="Index">Pojištěnci</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" asp-area="" asp-controller="Pojistenis" asp-action="Index">Pojištění</a>
+                    </li>
+                    
+                </ul>
+                
+                <div class="navbar-right">
+                    @if (_sm.IsSignedIn(User))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white">@User.Identity.Name</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Account" asp-action="Logout">Odhlásit se</a>
+
+                        </li>
+                    </ul>
+                    }
+                    else
+                    {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Login">Přihlásit</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Register">Registrovat</a>
+
+                        </li>
+                    </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Oto Theimer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

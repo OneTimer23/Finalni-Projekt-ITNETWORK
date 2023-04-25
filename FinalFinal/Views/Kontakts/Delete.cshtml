@@ -1,0 +1,66 @@
+﻿@model FinalFinal.Models.Kontakt
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h3>Opravdu chcete smazat pojištěnce?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+           Jméno
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Jmeno)
+        </dd>
+        <dt class = "col-sm-2">
+            Příjmení
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Prijmeni)
+        </dd>
+        <dt class = "col-sm-2">
+            Email
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            Telefon
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TelCislo)
+        </dd>
+        <dt class = "col-sm-2">
+            Ulice
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ulice)
+        </dd>
+        <dt class = "col-sm-2">
+            Město
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mesto)
+        </dd>
+        <dt class = "col-sm-2">
+            PSČ
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SmerovaciCislo)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" value="Delete" class="btn delete">Ano</button> | 
+        <a asp-action="Index" class="btn accept">Ne</a>
+    </form>
+
+    @if (ViewBag.hlaska != null)
+    {
+        <strong>@ViewBag.hlaska</strong>
+    }
+</div>
